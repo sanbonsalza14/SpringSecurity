@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
     private final JoinService joinService;
 
-
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -25,13 +24,12 @@ public class LoginController {
         return "join";
     }
 
-
-
     @PostMapping("/joinProc")
     public String joinProcess(JoinDto joinDto) {
         joinService.joinProcess(joinDto);
         return "redirect:/login";
     }
+
 
     @GetMapping("/my/info")
     public String infoPage(Model model) {
@@ -46,3 +44,15 @@ public class LoginController {
 }
 
 
+
+    @GetMapping("/my/info")
+    public String infoPage(Model model) {
+        // 현재 로그인된 사용자 정보를 확인
+        String username = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+        model.addAttribute("user", username);
+        return "info";
+    }
+}
