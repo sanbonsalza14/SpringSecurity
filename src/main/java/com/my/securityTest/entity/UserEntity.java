@@ -12,13 +12,9 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-
+    @Column(unique = true)
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
-    public void setRole(UserRole userRole) {
-    }
 }
