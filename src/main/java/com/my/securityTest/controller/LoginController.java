@@ -30,6 +30,21 @@ public class LoginController {
         return "redirect:/login";
     }
 
+
+    @GetMapping("/my/info")
+    public String infoPage(Model model) {
+        //현재 로그인된 사용자 정보를 확인
+        String username = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+        model.addAttribute("user", username);
+        return "info";
+    }
+}
+
+
+
     @GetMapping("/my/info")
     public String infoPage(Model model) {
         // 현재 로그인된 사용자 정보를 확인

@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     @GetMapping("/")
     public String mainPage(Model model) {
+
         // 현재 로그인된 사용자 정보를 확인
+
+        //현재 로그인된 사용자 정보를 확인
+
         String username = SecurityContextHolder
                 .getContext()
                 .getAuthentication()
@@ -20,6 +24,7 @@ public class MainController {
 
     @GetMapping("/admin")
     public String adminPage() {
+
         return "admin";
     }
 }
