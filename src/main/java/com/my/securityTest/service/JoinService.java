@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class JoinService {
     private final UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void joinProcess(JoinDto joinDto) {
         //1.받은 DTO 안에 username 을 가진 회원이 존재하는지 확인
@@ -27,7 +27,7 @@ public class JoinService {
         newUser.setPassword(bCryptPasswordEncoder
                 .encode(joinDto.getPassword()));
         //role 추가
-        newUser.setRole(UserRole.ROLE_USER);
+        newUser.setRole(UserRole.ROLE_ADMIN);
         //저장
         userRepository.save(newUser);
     }
